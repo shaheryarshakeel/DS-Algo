@@ -1,0 +1,16 @@
+Solution :
+
+public static boolean isValidSubsequence(List<Integer> array, List<Integer> sequence) {
+
+    int seqPointer = 0;
+
+    for (Integer value : array){
+      if (seqPointer == sequence.size()){
+        break;
+      }else if (sequence.get(seqPointer) == value){
+        seqPointer++;
+      }
+    }
+
+    return seqPointer == sequence.size();
+  }
