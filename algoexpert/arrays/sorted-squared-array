@@ -1,0 +1,35 @@
+Solution 1 :
+
+Complexity = O(nlogn) time, O(n) space
+
+public int[] sortedSquaredArray(int[] array) {
+    for (int i = 0; i < array.length; i++){
+      array[i] = (int)Math.pow(array[i], 2.0);
+    }
+    Arrays.sort(array);
+    return array;
+  }
+
+Solution 2 :
+
+Complexity = O(n) time, O(n) space
+
+public int[] sortedSquaredArray(int[] array) {
+    int[] responseArray = new int[array.length];
+    int smallerPointer = 0;
+    int largerPointer = array.length - 1;
+
+    for(int i = array.length - 1; i >=0 ; i--){
+      int smallValue = array[smallerPointer];
+      int largerValue = array[largerPointer];
+
+      if(Math.abs(smallValue) > Math.abs(largerValue)){
+        responseArray[i] = smallValue * smallValue;
+        smallerPointer++;
+      }else{
+        responseArray[i] = largerValue * largerValue;
+        largerPointer--;
+      }
+    }
+    return responseArray;
+  }
