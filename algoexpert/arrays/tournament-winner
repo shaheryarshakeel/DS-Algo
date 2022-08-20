@@ -1,0 +1,41 @@
+Solution :
+
+public String tournamentWinner(
+      ArrayList<ArrayList<String>> competitions, ArrayList<Integer> results) {
+
+    int awayTeamIdx = 0;
+
+    String winner = "";
+    Map<String, Integer> winnerScoreMap = new HashMap<>();
+
+    winnerScoreMap.put(winner, 0);
+
+    ArrayList<String> competition;
+
+    for(int i = 0; i < competitions.size(); i++){
+      competition = competitions.get(i);
+      Integer result = results.get(i);
+      String homeTeam = competition.get(0);
+      String awayTeam = competition.get(1);
+
+      String winningTeam = result == awayTeamIdx ? awayTeam : homeTeam;
+
+      setScore(winningTeam, 3, winnerScoreMap);
+
+      if(winnerScoreMap.get(winningTeam) > winnerScoreMap.get(winner)){
+        winner = winningTeam;
+      }
+
+    }
+    return winner;
+  }
+
+  public void setScore(String winningTeam, int points,
+                         Map<String, Integer> winnerScoreMap) {
+
+    if(winnerScoreMap.containsKey(winningTeam)){
+      winnerScoreMap.replace(winningTeam, winnerScoreMap.get(winningTeam) + points);
+    }else{
+      winnerScoreMap.put(winningTeam, points);
+    }
+  }
